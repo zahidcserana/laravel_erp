@@ -12,16 +12,36 @@
 */
 
 Route::get('/', function () {
-    return view('layouts/dashboard');
+	$data['title'] = 'Dashboard';
+	$data['header'] = 'Dashboard';
+    return view('layouts/dashboard',$data);
 });
 Route::get('/login',['as'=>'login','uses'=>'LoginController@LoginForm']);
 
 Route::get('/size_info',['as'=>'size_info','uses'=>'ProductionController@SizeInfo']);
-Route::get('unit_set', 'ProductionController@showProfile')->name('unit_set');
-Route::get('raw_material_setup', 'ProductionController@showProfile')->name('raw_material_setup');
-Route::get('buyer_info', 'ProductionController@showProfile')->name('buyer_info');
-Route::get('merchandiser_info', 'ProductionController@showProfile')->name('merchandiser_info');
-Route::get('fabric_info', 'ProductionController@showProfile')->name('fabric_info');
+Route::get('size_add', 'ProductionController@SizeForm')->name('size_add');
+Route::post('size_add', 'ProductionController@SizeAdd')->name('size_add');
+
+Route::get('unit_set', 'ProductionController@UnitInfo')->name('unit_set');
+Route::get('unit_add', 'ProductionController@UnitForm')->name('unit_add');
+Route::post('unit_add', 'ProductionController@UnitAdd')->name('unit_add');
+
+Route::get('raw_material', 'ProductionController@RawMaterial')->name('raw_material');
+Route::get('raw_material_add', 'ProductionController@RawMaterialForm')->name('raw_material_add');
+Route::post('raw_material_add', 'ProductionController@RawMaterialAdd')->name('raw_material_add');
+
+Route::get('buyer_info', 'ProductionController@BuyerInfo')->name('buyer_info');
+Route::get('buyer_add', 'ProductionController@BuyerForm')->name('buyer_add');
+Route::post('buyer_add', 'ProductionController@BuyerAdd')->name('buyer_add');
+
+Route::get('merchandiser_info', 'ProductionController@Merchandiser')->name('merchandiser_info');
+Route::get('merchandiser_add', 'ProductionController@MerchandiserForm')->name('merchandiser_add');
+Route::post('merchandiser_add', 'ProductionController@MerchandiserAdd')->name('merchandiser_add');
+
+Route::get('fabric_info', 'ProductionController@FabricInfo')->name('fabric_info');
+Route::get('fabric_add', 'ProductionController@FabricForm')->name('fabric_add');
+Route::post('fabric_add', 'ProductionController@FabricAdd')->name('fabric_add');
+
 Route::get('style_color_size_wise_data_entry_form', 'ProductionController@showProfile')->name('style_color_size_wise_data_entry_form');
 Route::get('production_pattern', 'UserController@showProfile')->name('production_pattern');
 Route::get('style_information', 'UserController@showProfile')->name('style_information');
